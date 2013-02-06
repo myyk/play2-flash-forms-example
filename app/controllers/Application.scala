@@ -39,10 +39,6 @@ object Application extends Controller {
     val flashData = Flash.serialize(request.flash)
     val boundForm = form.bind(flashData)
     boundForm
-    //    boundForm.fold(
-    //      bad => bad,
-    //      good => boundForm
-    //    )
   }
 
   case class SimpleResultWithFormErrors(result: SimpleResult[_]) {
@@ -74,8 +70,7 @@ object Application extends Controller {
 
   def form = Form(
     single(
-      "name" -> nonEmptyText.verifying(isNameOk)
-     ))
+      "name" -> nonEmptyText.verifying(isNameOk)))
 
   private def isNameOk: Constraint[String] = {
     Constraint { name: String =>
