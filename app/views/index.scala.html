@@ -1,0 +1,15 @@
+@(message: String, form: Form[String])
+
+@import MyHelpers._
+
+@main("Welcome to Play 2.0") {
+    
+    <p>@message</p>
+    
+    @helper.form(action = routes.Application.post) {
+      @helper.input(form("name")) { (id, name, value, args) =>
+        <input type="text" name="@name" id="@id" value="@value" @toHtmlArgs(args)>
+      }
+    }
+    
+}
